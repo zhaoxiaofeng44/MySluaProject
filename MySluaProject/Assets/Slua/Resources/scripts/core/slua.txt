@@ -1,0 +1,107 @@
+
+Sluc = {}
+
+--
+local Object = {
+	__call = function(...)
+		return {}
+	end
+}
+setmetatable(Object,Object)
+
+--
+function Sluc.new(className)
+	
+	return _G[className]()
+end
+
+--
+function Sluc.Class(base,instance)
+
+    local mt = getmetatable(base or Object) 
+
+    local class = {}
+	local ret = instance or {}
+	setmetatable(ret,
+		{
+			__index = class,
+		}
+	)
+
+    setmetatable(class, 
+        {
+            __index = base,
+            __call = function(...)
+               
+				local r = mt.__call(...)
+                local ins_ret = setmetatable(
+                    {
+                        __base = r,
+                    },
+
+                    {
+                        __index = function(t, k)
+                            local ret_field
+                            ret_field = ret[k]
+                            if nil == ret_field then
+                                ret_field = r[k]
+                            end
+
+                            return ret_field
+                        end,
+
+                        __newindex = function(t,k,v)
+                            if not pcall(function() r[k]=v end) then
+                                rawset(t,k,v)
+                            end
+                        end,
+                    })
+
+                if ret.ctor then
+                    ret.ctor(ins_ret, ...)
+                end
+
+                return ins_ret
+            end,
+        }
+    )
+    return class
+end
+
+
+
+function Sluc.var_dump(data, max_level, prefix)
+
+    if type(prefix) ~= "string" then
+        prefix = ""
+    end
+    if type(data) ~= "table" then
+        print(prefix .. tostring(data))
+    else
+        print(data)
+        if max_level ~= 0 then
+            local prefix_next = prefix .. "    "
+            print(prefix .. "{")
+            for k,v in pairs(data) do
+                io.stdout:write(prefix_next .. k .. " = ")
+                if type(v) ~= "table" or (type(max_level) == "number" and max_level <= 1) then
+                    print(v)
+                else
+                    if max_level == nil then
+                        var_dump(v, nil, prefix_next)
+                    else
+                        var_dump(v, max_level - 1, prefix_next)
+                    end
+                end
+            end
+            print(prefix .. "}")
+        end
+    end
+end
+
+function Sluc.dump(data, max_level)
+
+    Sluc.var_dump(data, max_level or 5)
+end
+
+new,dump = Sluc.new,Sluc.dump

@@ -1,0 +1,114 @@
+
+require "scripts.core.slua"
+
+MyClass = Sluc.Class() do
+
+	local this = MyClass
+
+	function this:ctor()
+		
+		print("aaaaaaaaaaaaaaaaa")
+	end
+
+
+	function this:destroy()
+
+
+	end
+end
+
+
+TestAA = Sluc.Class() do
+
+	local this = TestAA
+
+	function this:Start()
+		
+		print("Test aAA AAAAAAAAAA Start")
+	end
+
+	function this:OnDestroy()
+		
+		print("Test aAA OnDestroy")
+	end
+
+	function this:destroy()
+
+	end
+end
+
+
+AAAAAA = function()
+	return {
+		Start = function()
+			print("Test aAA Start")
+
+		end
+	
+	}
+end
+
+
+AAAAAA = Sluc.new
+
+function main()
+
+	local aa = new "MyClass"
+	local bb = new "MyClass"
+
+	aa.num = 99
+	bb.num = 100
+
+	print(aa.num)
+	print(bb.num)
+
+	print(aa.num + bb.num)
+
+
+	local eeee = new "TestAA"
+	eeee:Start()
+
+	local hello = new "HelloWorld"
+	--dump(hello)
+	dump(HelloWorld())
+
+function abc()
+	print("call func7 callback")
+end
+
+	local h=HelloWorld()
+
+
+	hello:func7(abc)
+
+	--hello:func7("aaa")
+	--hello:hello()
+	--[[print "xxxxxxxxxxxxx"
+	print(MySchedule())
+	print "ccccccccccccc"
+	print(Sluc.Extends.SlucScheduleBehaviour)
+	local slider = GameObject.Find("GameObject")
+	print(slider)
+	print(MySchedule())
+	slider:AddComponent(MySchedule())
+	print "oooooooooooooo"
+
+	local s,c=Custom.staticCustom();
+	print(s,c)
+
+	local a,b,x=c:instanceCustom()
+	print(a,b,x)
+
+	-- Type parameter can be pass in as string/type table
+	print(c:getTypeName("UnityEngine.MonoBehaviour,UnityEngine"))
+	print(c:getTypeName(MonoBehaviour))
+	print(c:getTypeName(Custom))
+	print(c:getTypeName(c:GetType()))
+
+	-- Test getItem setItem
+	print("---<"..c:getItem("test"))
+	c:setItem("test",10)
+	print("-->"..c:getItem("test"))
+	c:setItem("test",100)
+	print("-->"..c:getItem("test"))--]]
+end

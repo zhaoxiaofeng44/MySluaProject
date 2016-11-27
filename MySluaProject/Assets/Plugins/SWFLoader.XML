@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SWFLoader</name>
+    </assembly>
+    <members>
+        <member name="T:SWFLoader.ShockwaveFlashClass">
+            <summary>
+            SWFLoaderCore's dll importer
+            </summary>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.InitManager(System.String)">
+            <summary>
+            initialize SWFLoaderCore
+            </summary>
+            <param name="FlashOcxFilePath">Flash.Ocx file path</param>
+            <returns></returns>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.DisposeManager">
+            <summary>
+            dispose SWFLoaderCore
+            </summary>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.InitFlashControl(System.String,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            initialize a swf
+            </summary>
+            <param name="name">name</param>
+            <param name="path">file path or URL</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+            <param name="isTransparent">is transparent</param>
+            <returns>IntPtr of SWFControl.ptr</returns>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.InitFlashControl2(System.String,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            initialize a swf
+            </summary>
+            <param name="name">name</param>
+            <param name="path">file path or URL</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+            <param name="isTransparent">is transparent</param>
+            <param name="isInverted">is inverted by x-axis</param>
+            <returns></returns>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.destroyFlashControl(System.IntPtr)">
+            <summary>
+            destroy a FlashControl
+            </summary>
+            <param name="controlPtr"></param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.setTransparent(System.String,System.Boolean)">
+            <summary>
+            set a swf to transparent or opaque
+            </summary>
+            <param name="name">swf name</param>
+            <param name="isTransparent">true for transparent, false for opaque</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.focusControl(System.String)">
+            <summary>
+            set a swf as focused
+            </summary>
+            <param name="name">swf name</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.defocusAll">
+            <summary>
+            defocus all swf
+            </summary>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseMove(System.Int16,System.Int16)">
+            <summary>
+            inject a MouseMove event into the focused swf
+            </summary>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseDown(System.Int16,System.Int16)">
+            <summary>
+            inject a MouseDown event into the focused swf
+            </summary>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseUp(System.Int16,System.Int16)">
+            <summary>
+            inject a MouseUp event into the focused swf
+            </summary>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseMove2(System.String,System.Int16,System.Int16)">
+            <summary>
+            inject a MouseMove event into swf
+            </summary>
+            <param name="name">swf name</param>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseDown2(System.String,System.Int16,System.Int16)">
+            <summary>
+            inject a MouseDown event into swf
+            </summary>
+            <param name="name">swf name</param>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseUp2(System.String,System.Int16,System.Int16)">
+            <summary>
+            inject a MouseUp event into swf
+            </summary>
+            <param name="name">swf name</param>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectKeyEvent(System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            inject a Keyboard event into the focused swf
+            </summary>
+            <param name="msg">Windows Message Codes. eg. WM_CHAR(0x0102) WM_KEYDOWN(0x0100)
+            For more, please refer C:\Program Files\Microsoft SDKs\Windows\v7.0A\Include\WinUser.h
+            </param>
+            <param name="wParam">(IntPtr)event.character is an apposite value</param>
+            <param name="lParam">useless here, set to IntPtr.Zero</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectKeyEvent2(System.String,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            inject a Keyboard event into swf
+            </summary>
+            <param name="name">swf name</param>
+            <param name="msg">Windows Message Codes. eg. WM_CHAR(0x0102) WM_KEYDOWN(0x0100)
+            For more, please refer C:\Program Files\Microsoft SDKs\Windows\v7.0A\Include\WinUser.h
+            </param>
+            <param name="wParam">(IntPtr)event.character is an apposite value</param>
+            <param name="lParam">useless here, set to IntPtr.Zero</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.callFunction(System.String)">
+            <summary>
+            call a function from the focused swf
+            </summary>
+            <param name="arg">the parameters, it's a XML string and need build by yourself.</param>
+            <returns>the retrun value from swf, it's a XML string and need analyze by yourself.</returns>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.callFunction2(System.String,System.String)">
+            <summary>
+            call a function from swf
+            </summary>
+            <param name="name">swf name</param>
+            <param name="arg">the parameters, it's a XML string and need build by yourself.</param>
+            <returns>the retrun value from swf, it's a XML string and need analyze by yourself.</returns>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.setDelegate(System.String,SWFLoader.CallBack)">
+            <summary>
+            set the delegate fuction which would callback
+            </summary>
+            <param name="name"></param>
+            <param name="cb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.play(System.String)">
+            <summary>
+            set the swf movie to play
+            </summary>
+            <param name="name">swf name</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.stop(System.String)">
+            <summary>
+            set the swf movie to stop
+            </summary>
+            <param name="name">swf name</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.Rewind(System.String)">
+            <summary>
+            set the swf movie to rewind
+            </summary>
+            <param name="name">swf name</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.gotoFrame(System.String,System.Int64)">
+            <summary>
+            set the swf movie gotoFrame
+            </summary>
+            <param name="name">swf name</param>
+            <param name="frameNum">frame number</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.setLoop(System.String,System.Boolean)">
+            <summary>
+            set the swf movie loop
+            </summary>
+            <param name="name">swf name</param>
+            <param name="shouldLoop">true for loop, false for not loop</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.setQuality(System.String,System.Int16)">
+            <summary>
+            set the swf movie's quality
+            </summary>
+            <param name="name">swf name</param>
+            <param name="renderQuality">
+            low:0
+            medium:1
+            high:2
+            best:3
+            autolow:4
+            autohigh:5
+            </param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.setScaleMode(System.String,System.Int16)">
+            <summary>
+            set the swf movie's scale mode
+            </summary>
+            <param name="name">swf name</param>
+            <param name="scaleMode">scale mode</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseWheel(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            inject a MouseWheel event into the focused swf
+            </summary>
+            <param name="relScroll">"event.delta.y * -50" is an apposite value</param>
+            <param name="xPos">x pos</param>
+            <param name="yPos"></param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.injectMouseWheel2(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            inject a MouseWheel event into swf
+            </summary>
+            <param name="name">swf name</param>
+            <param name="relScroll">"event.delta.y * -50" is an apposite value</param>
+            <param name="xPos">x pos</param>
+            <param name="yPos">y pos</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.setSize(System.String,System.Int32,System.Int32)">
+            <summary>
+            set the swf movie's size
+            </summary>
+            <param name="name">swf name</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.SetTextureFromUnity(System.String,System.IntPtr)">
+            <summary>
+            bind swf movie to an unity Texture2D
+            </summary>
+            <param name="name">swf name</param>
+            <param name="texture">the Texture2D in unity</param>
+        </member>
+        <member name="M:SWFLoader.ShockwaveFlashClass.setKey(System.String)">
+            <summary>
+            set mrSWF's license key, to show a DEMO text.
+            </summary>
+            <param name="key">the license key</param>
+        </member>
+        <member name="T:SWFLoader.CallBack">
+            <summary>
+            the internal delegate would callback by SWFLoaderCore,
+            it's a collector of callback which send by flash.external,
+            and distribute to CallBackFuction by fuction name.
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SWFLoader.CallBackFuction">
+            <summary>
+            The delegate would callback by flash.external.ExternalInterface.call(functionName:String, ...parameters)
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SWFLoader.FlashObject">
+            <summary>
+            FlashObject is the main class.
+            </summary>
+        </member>
+        <member name="F:SWFLoader.FlashObject.SWFControlDic">
+            <summary>
+            SWF controls' dictionary
+            </summary>
+        </member>
+        <member name="M:SWFLoader.FlashObject.getInstance(System.String)">
+            <summary>
+            singleton instance
+            </summary>
+            <param name="FlashOcxFilePath">Flash.Ocx file path</param>
+            <returns></returns>
+        </member>
+        <member name="M:SWFLoader.FlashObject.Dispose">
+            <summary>
+            dispose
+            </summary>
+        </member>
+        <member name="M:SWFLoader.FlashObject.AddSWFControl(SWFLoader.SWFControl)">
+            <summary>
+            Add a swf movie and play
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.RemoveSWFControl(SWFLoader.SWFControl)">
+            <summary>
+            remove a swf movie
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.setTransparent(System.String,System.Boolean)">
+            <summary>
+            set a swf to transparent or opaque
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="isTransparent">true for transparent, false for opaque</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.focusControl(System.String)">
+            <summary>
+            set a swf as focused
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.defocusAll">
+            <summary>
+            defocus all swf
+            </summary>
+        </member>
+        <member name="M:SWFLoader.FlashObject.injectMouseMove(System.String,System.Int16,System.Int16)">
+            <summary>
+            inject a MouseMove event into swf
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.injectMouseDown(System.String,System.Int16,System.Int16)">
+            <summary>
+            inject a MouseDown event into swf
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.injectMouseUp(System.String,System.Int16,System.Int16)">
+            <summary>
+            inject a MouseUp event into swf
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.injectMouseWheel(System.String,System.Int32,System.Int16,System.Int16)">
+            <summary>
+            inject a MouseWheel event into swf
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="relScroll">"event.delta.y * -50" is an apposite value</param>
+            <param name="x">x pos</param>
+            <param name="y">y pos</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.injectKeyEvent(System.String,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            inject a Keyboard event into swf
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="msg">Windows Message Codes. eg. WM_CHAR(0x0102) WM_KEYDOWN(0x0100)
+            For more, please refer C:\Program Files\Microsoft SDKs\Windows\v7.0A\Include\WinUser.h
+            </param>
+            <param name="wParam">(IntPtr)event.character is an apposite value</param>
+            <param name="lParam">useless here, set to IntPtr.Zero</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.callFunction(System.String,System.String,System.Collections.ArrayList)">
+            <summary>
+            call a function from swf
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="funcName">function name</param>
+            <param name="args">parameters, accepted C# "null" as ActionScript "null",
+            C# "sbyte\short\ushort\int\uint\long\ulong\float\double\decimal" as ActionScript "number",
+            C# "bool" as ActionScript "true\false",
+            C# "string\char" as ActionScript "string" 
+            </param>
+            <returns>the retrun value from swf, it's a XML string and need analyze by yourself.</returns>
+        </member>
+        <member name="M:SWFLoader.FlashObject.play(System.String)">
+            <summary>
+            set the swf movie to play
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.stop(System.String)">
+            <summary>
+            set the swf movie to stop
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.rewind(System.String)">
+            <summary>
+            set the swf movie to rewind
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.gotoFrame(System.String,System.Int64)">
+            <summary>
+            set the swf movie gotoFrame
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="frameNum">frame number</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.setLoop(System.String,System.Boolean)">
+            <summary>
+            set the swf movie loop
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="shouldLoop">true for loop, false for not loop</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.setQuality(System.String,System.Int16)">
+            <summary>
+            set the swf movie's quality
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="renderQuality">
+            low:0
+            medium:1
+            high:2
+            best:3
+            autolow:4
+            autohigh:5
+            </param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.setScaleMode(System.String,System.Int16)">
+            <summary>
+            set the swf movie's scale mode
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="scaleMode">scale mode</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.setSize(System.String,System.Int32,System.Int32)">
+            <summary>
+            set the swf movie's size
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.SetTextureFromUnity(System.String,System.IntPtr)">
+            <summary>
+            bind swf movie to an unity Texture2D
+            </summary>
+            <param name="name">swf name in SWFControl</param>
+            <param name="texture">the Texture2D in unity</param>
+        </member>
+        <member name="M:SWFLoader.FlashObject.SetKey(System.String)">
+            <summary>
+            set mrSWF's license key, to show a DEMO text.
+            </summary>
+            <param name="key">the license key</param>
+        </member>
+        <member name="T:SWFLoader.SWFControl">
+            <summary>
+            the swf information
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.Name">
+            <summary>
+            swf name, to distinguish different swf movie from one scenes
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.FilePath">
+            <summary>
+            swf file's path pr URL
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.Width">
+            <summary>
+            width
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.Height">
+            <summary>
+            height
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.texture">
+            <summary>
+            binding Texture2D
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.IsTransparent">
+            <summary>
+            is transparent
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.CallBackFunctions">
+            <summary>
+            Dictionary of callBackFunctions
+            </summary>
+        </member>
+        <member name="F:SWFLoader.SWFControl.ptr">
+            <summary>
+            IntPtr in SWFLoaderCore 
+            </summary>
+        </member>
+    </members>
+</doc>
